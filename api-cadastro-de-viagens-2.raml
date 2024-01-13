@@ -1,0 +1,112 @@
+#%RAML 1.0
+title: API - Cadastro De Viagens 2
+version: v1
+
+types:
+  Viagem:
+    properties:
+      id: number
+      destino: string
+      data_partida: 
+      data_retorno: 
+      descricao: string
+
+/travels:
+  get:
+    description: Lista todas as viagens
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              [
+                {
+                  "id": 1,
+                  "destino": "Paris",
+                  "data_partida": "20/11/2023",
+                  "data_retorno": "30/11/2023",
+                  "descricao": "Viagem de férias"
+                },
+                {
+                  "id": 2,
+                  "destino": "Nova York",
+                  "data_partida": "25/12/2023",
+                  "data_retorno": "30/12/2023",
+                  "descricao": "Viagem de negócios"
+                },
+                {
+                 "id": 3,
+                  "destino": "Brasil",
+                  "data_partida": "05/10/2023",
+                  "data_retorno": "15/10/2023",
+                  "descricao": "Viagem a trabalho "
+                }
+              ]
+  post:
+    description: Cria uma nova viagem
+    body:
+      application/json:
+        example: |
+          {
+            "destino": "Londres",
+            "data_partida": "2023-03-15",
+            "data_retorno": "2023-03-25",
+            "descricao": "Viagem cultural"
+          }
+    responses:
+      201:
+        body:
+          application/json:
+            example: |
+              {
+                "id": 1,
+                "destino": "Londres",
+                "data_partida": "2023-03-15",
+                "data_retorno": "2023-03-25",
+                "descricao": "Viagem cultural"
+              }
+
+/travels/{id}:
+  get:
+    description: Obtém os detalhes de uma viagem específica
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "id": 1,
+                "destino": "Paris",
+                "data_partida": "2023-01-01",
+                "data_retorno": "2023-01-10",
+                "descricao": "Viagem de férias"
+              }
+
+  put:
+    description: Atualiza os detalhes de uma viagem específica
+    body:
+      application/json:
+        example: |
+          { 
+            "destino": "Paris",
+            "data_partida": "2023-01-01",
+            "data_retorno": "2023-01-15",
+            "descricao": "Viagem de férias estendida"
+          }
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "id": 1,
+                "destino": "Paris",
+                "data_partida": "2023-01-01",
+                "data_retorno": "2023-01-15",
+                "descricao": "Viagem de férias estendida"
+              }
+
+  delete:
+    description: Exclui uma viagem específica
+    responses:
+      204:
